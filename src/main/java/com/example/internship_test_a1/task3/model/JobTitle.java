@@ -1,4 +1,4 @@
-package com.example.internship_test_a1.task3.model.reference;
+package com.example.internship_test_a1.task3.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

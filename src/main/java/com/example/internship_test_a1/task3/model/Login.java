@@ -1,13 +1,8 @@
 package com.example.internship_test_a1.task3.model;
 
-import com.example.internship_test_a1.task3.model.reference.Application;
-import com.example.internship_test_a1.task3.model.reference.Department;
-import com.example.internship_test_a1.task3.model.reference.JobTitle;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Data
 @NoArgsConstructor

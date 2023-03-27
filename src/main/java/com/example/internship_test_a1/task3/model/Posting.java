@@ -1,6 +1,5 @@
 package com.example.internship_test_a1.task3.model;
 
-import com.example.internship_test_a1.task3.model.reference.Currency;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,5 @@
 package com.example.internship_test_a1.task3.model;
 
-import com.example.internship_test_a1.task3.model.reference.Product;
-import com.example.internship_test_a1.task3.model.reference.Unit;
 import com.example.internship_test_a1.task3.model.utility.CompositePDetailsId;
 import jakarta.persistence.*;
 import lombok.Data;

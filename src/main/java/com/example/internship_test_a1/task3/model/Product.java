@@ -18,4 +18,8 @@ public class Product {
 
         @Column(name = "description", nullable = false)
         private String description;
+
+        public Product(String description) {
+                this.description = description;
+        }
 }

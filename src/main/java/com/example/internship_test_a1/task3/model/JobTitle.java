@@ -17,4 +17,8 @@ public class JobTitle {
 
         @Column(name = "title_name", nullable = false)
         private String name;
+
+        public JobTitle(String name) {
+                this.name = name;
+        }
 }

@@ -17,4 +17,8 @@ public class Application {
 
         @Column(name = "app_name", nullable = false)
         private String name;
+
+        public Application(String application) {
+                this.name = application;
+        }
 }

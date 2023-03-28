@@ -5,11 +5,13 @@ import com.opencsv.bean.CsvDate;
 import com.opencsv.bean.CsvNumber;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
+@Component
 public class CsvPosting {
 
         public static final char SEPARATOR = ';';

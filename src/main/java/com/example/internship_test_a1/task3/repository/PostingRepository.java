@@ -2,7 +2,15 @@ package com.example.internship_test_a1.task3.repository;
 
 import com.example.internship_test_a1.task3.model.Posting;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.lang.annotation.Native;
+import java.util.List;
 
 public interface PostingRepository extends JpaRepository<Posting, String> {
         Posting findByMatDoc(String matDoc);
+
+        @Query(value = "select p from Posting p where day(p.postingDate) = :day and p.authorized = :auth")
+        List<Posting> findPostingsByDay(@Param("day") Integer day, @Param("auth") Boolean auth);
 }

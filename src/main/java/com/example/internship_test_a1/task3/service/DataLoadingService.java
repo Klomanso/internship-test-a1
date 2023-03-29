@@ -23,15 +23,15 @@ public class DataLoadingService {
         private final CsvLoginsParser csvLoginsParser;
         private final CsvPostingsParser csvPostingsParser;
 
-        ApplicationRepository applicationRepository;
-        CurrencyRepository currencyRepository;
-        DepartmentRepository departmentRepository;
-        JobTitleRepository jobTitleRepository;
-        LoginRepository loginRepository;
-        PostingRepository postingRepository;
-        PostingDetailsRepository postingDetailsRepository;
-        UnitRepository unitRepository;
-        ProductRepository productRepository;
+        private final ApplicationRepository applicationRepository;
+        private final CurrencyRepository currencyRepository;
+        private final DepartmentRepository departmentRepository;
+        private final JobTitleRepository jobTitleRepository;
+        private final LoginRepository loginRepository;
+        private final PostingRepository postingRepository;
+        private final PostingDetailsRepository postingDetailsRepository;
+        private final UnitRepository unitRepository;
+        private final ProductRepository productRepository;
 
         public void LoadData() throws FileNotFoundException {
 
@@ -90,9 +90,9 @@ public class DataLoadingService {
                 for (CsvLogin login : logins) {
 
                         loginList.add(Login.builder()
+                                .application(applicationRepository.findByName(login.getApplication()))
                                 .accountName(login.getAppAccountName())
                                 .isActive(login.getIsActive())
-                                .application(applicationRepository.findByName(login.getApplication()))
                                 .department(departmentRepository.findByName(login.getDepartment()))
                                 .title(jobTitleRepository.findByName(login.getJobTitle()))
                                 .build());
@@ -126,13 +126,12 @@ public class DataLoadingService {
                 for (CsvPosting posting : postings) {
 
                         postingDetails.add(PostingDetails.builder()
-                                .amountLC(posting.getAmountLC())
-                                .quantity(posting.getQuantity())
+                                .posting(postingRepository.findByMatDoc(posting.getMatDoc()))
+                                .item(posting.getItem())
                                 .product(productRepository.findByDescription(posting.getMaterialDescription()))
                                 .unit(unitRepository.findByName(posting.getUnit()))
-                                .compositeId(CompositePDetailsId.builder()
-                                        .item(posting.getItem())
-                                        .posting(postingRepository.findByMatDoc(posting.getMatDoc())).build())
+                                .quantity(posting.getQuantity())
+                                .amountLC(posting.getAmountLC())
                                 .build());
                 }
 

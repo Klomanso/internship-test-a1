@@ -1,5 +1,7 @@
 package com.example.internship_test_a1.task3.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,12 +38,14 @@ public class Posting {
         private Currency currency;
 
         @ManyToOne
+        @JsonManagedReference
         @JoinColumn(name = "login_id", referencedColumnName = "login_id")
         private Login login;
 
         @Column(name = "authorized")
         private Boolean authorized;
 
+        @JsonManagedReference
         @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
         @JoinColumn(name = "mat_doc")
         @OnDelete(action = OnDeleteAction.CASCADE)

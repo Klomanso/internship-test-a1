@@ -1,6 +1,8 @@
 package com.example.internship_test_a1.task3.model;
 
 import com.example.internship_test_a1.task3.model.utility.CompositePDetailsId;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,11 +14,19 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @Entity
+@IdClass(CompositePDetailsId.class)
 @Table(name = "posting_details")
 public class PostingDetails {
 
-        @EmbeddedId
-        private CompositePDetailsId compositeId;
+        @Id
+        @ManyToOne
+        @JsonBackReference
+        @JoinColumn(name = "mat_doc", referencedColumnName = "mat_doc")
+        private Posting posting;
+
+        @Id
+        @Column(name = "item")
+        private Integer item;
 
         @ManyToOne
         @JoinColumn(name = "product_id", referencedColumnName = "product_id")

@@ -1,5 +1,7 @@
 package com.example.internship_test_a1.task3.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,6 +43,7 @@ public class Login {
         @JoinColumn(name = "title_no", referencedColumnName = "title_no")
         private JobTitle title;
 
+        @JsonBackReference
         @OneToMany(mappedBy = "login", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
         @OnDelete(action = OnDeleteAction.NO_ACTION)
         private List<Posting> postings;

@@ -16,9 +16,9 @@ public interface PostingRepository extends JpaRepository<Posting, String> {
         @Query(value = "select p from Posting p where month(p.postingDate) = :month and p.authorized = :auth")
         List<Posting> findPostingsByMonth(@Param("month") Integer month, @Param("auth") Boolean auth);
 
-        @Query(value = "select p from Posting p where quarter(p.postingDate) = :day and p.authorized = :auth")
-        List<Posting> findPostingsByQuarter(@Param("day") Integer day, @Param("auth") Boolean auth);
+        @Query(value = "select p from Posting p where quarter(p.postingDate) = :quarter and p.authorized = :auth")
+        List<Posting> findPostingsByQuarter(@Param("quarter") Integer quarter, @Param("auth") Boolean auth);
 
         @Query(value = "select p from Posting p where year(p.postingDate) = :year and p.authorized = :auth")
-        List<Posting> findPostingsByYear(@Param("year") Integer day, @Param("auth") Boolean auth);
+        List<Posting> findPostingsByYear(@Param("year") Integer year, @Param("auth") Boolean auth);
 }

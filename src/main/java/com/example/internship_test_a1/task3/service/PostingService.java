@@ -17,12 +17,23 @@ public class PostingService implements IPostingService {
                 this.postingRepository = postingRepository;
         }
 
-        public List<Posting> findAll() {
-                return postingRepository.findAll();
+        @Override
+        public List<Posting> findAllByDay(Integer d, Boolean auth) {
+                return postingRepository.findPostingsByDay(d, auth);
         }
 
         @Override
-        public List<Posting> findAllByDay(Integer D, Boolean auth) {
-                return postingRepository.findPostingsByDay(D, auth);
+        public List<Posting> findAllByYear(Integer y, Boolean auth) {
+                return postingRepository.findPostingsByYear(y, auth);
+        }
+
+        @Override
+        public List<Posting> findAllByQuarter(Integer q, Boolean auth) {
+                return postingRepository.findPostingsByQuarter(q, auth);
+        }
+
+        @Override
+        public List<Posting> findAllByMonth(Integer m, Boolean auth) {
+                return  postingRepository.findPostingsByMonth(m, auth);
         }
 }

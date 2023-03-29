@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.lang.annotation.Native;
 import java.util.List;
 
 public interface PostingRepository extends JpaRepository<Posting, String> {
@@ -13,4 +12,13 @@ public interface PostingRepository extends JpaRepository<Posting, String> {
 
         @Query(value = "select p from Posting p where day(p.postingDate) = :day and p.authorized = :auth")
         List<Posting> findPostingsByDay(@Param("day") Integer day, @Param("auth") Boolean auth);
+
+        @Query(value = "select p from Posting p where month(p.postingDate) = :month and p.authorized = :auth")
+        List<Posting> findPostingsByMonth(@Param("month") Integer month, @Param("auth") Boolean auth);
+
+        @Query(value = "select p from Posting p where quarter(p.postingDate) = :day and p.authorized = :auth")
+        List<Posting> findPostingsByQuarter(@Param("day") Integer day, @Param("auth") Boolean auth);
+
+        @Query(value = "select p from Posting p where year(p.postingDate) = :year and p.authorized = :auth")
+        List<Posting> findPostingsByYear(@Param("year") Integer day, @Param("auth") Boolean auth);
 }

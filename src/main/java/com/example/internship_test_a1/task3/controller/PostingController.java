@@ -2,8 +2,6 @@ package com.example.internship_test_a1.task3.controller;
 
 import com.example.internship_test_a1.task3.model.Posting;
 import com.example.internship_test_a1.task3.service.PostingService;
-import lombok.AllArgsConstructor;
-import org.hibernate.sql.ast.tree.predicate.BooleanExpressionPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,17 +25,20 @@ public class PostingController {
         }
 
         @GetMapping("/month/{M}")
-        public List<Posting> findAllByMonth(@PathVariable String M) {
-                return null;
+        public List<Posting> findAllByMonth(@PathVariable Integer M,
+                                            @RequestParam(required = false, defaultValue = "false") Boolean auth) {
+                return postingService.findAllByMonth(M, auth);
         }
 
         @GetMapping("/quarter/{Q}")
-        public List<Posting> findAllByQuarter(@PathVariable String Q) {
-                return null;
+        public List<Posting> findAllByQuarter(@PathVariable Integer Q,
+                                              @RequestParam(required = false, defaultValue = "false") Boolean auth) {
+                return postingService.findAllByQuarter(Q, auth);
         }
 
         @GetMapping("/year/{Y}")
-        public List<Posting> findAllByYear(@PathVariable String Y) {
-                return null;
+        public List<Posting> findAllByYear(@PathVariable Integer Y,
+                                           @RequestParam(required = false, defaultValue = "false") Boolean auth) {
+                return postingService.findAllByYear(Y, auth);
         }
 }
